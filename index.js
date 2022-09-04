@@ -1,3 +1,4 @@
+const app = document.querySelector(".app");
 const canvas = document.createElement("canvas");
 
 const ctx = canvas.getContext("2d");
@@ -99,40 +100,44 @@ const animate = () => {
   }
 };
 
-const run = () => {
-  assetsLoader().then(() => {
-    document.body.append(canvas);
-    window.addEventListener("keydown", (e) => {
-      keyPressed = e.key;
-      switch (e.key) {
-        case "ArrowUp":
-          player.src = playerImageSrc["up"];
-          playerIsMoving = true;
-          break;
-        case "ArrowDown":
-          player.src = playerImageSrc["down"];
-          playerIsMoving = true;
-          break;
-        case "ArrowLeft":
-          player.src = playerImageSrc["left"];
-          playerIsMoving = true;
-          break;
-        case "ArrowRight":
-          player.src = playerImageSrc["right"];
-          playerIsMoving = true;
-          break;
-      }
-    });
+var appInitialize = false;
 
-    window.addEventListener("keyup", (e) => {
-      keyPressed = null;
-      playerIsMoving = false;
-      currentPlayerFrame = 0;
-      playerAnimationTime = 0;
-    });
-
-    animate();
+const run = async () => {
+  await assetsLoader();
+  app.append(canvas);
+  window.addEventListener("keydown", (e) => {
+    keyPressed = e.key;
+    switch (e.key) {
+      case "ArrowUp":
+        player.src = playerImageSrc["up"];
+        playerIsMoving = true;
+        break;
+      case "ArrowDown":
+        player.src = playerImageSrc["down"];
+        playerIsMoving = true;
+        break;
+      case "ArrowLeft":
+        player.src = playerImageSrc["left"];
+        playerIsMoving = true;
+        break;
+      case "ArrowRight":
+        player.src = playerImageSrc["right"];
+        playerIsMoving = true;
+        break;
+    }
   });
+
+  window.addEventListener("keyup", (e) => {
+    keyPressed = null;
+    playerIsMoving = false;
+    currentPlayerFrame = 0;
+    playerAnimationTime = 0;
+  });
+
+  animate();
 };
 
-run();
+(async () => {
+  await run();
+  window.location.reload();
+})();

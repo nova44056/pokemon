@@ -13,3 +13,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.loading{
+    display: none;
+    color: white;
+}
