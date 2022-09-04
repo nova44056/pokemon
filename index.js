@@ -30,8 +30,6 @@ const assetsLoader = async () => {
     map.onload = () => {
       player.onload = () => {
         foreground.onload = () => {
-          canvas.style.display = "block";
-          window.location.reload();
           resolve();
         };
       };
@@ -103,7 +101,8 @@ const animate = () => {
   }
 };
 
-await assetsLoader().then(() => {
+assetsLoader().then(() => {
+  canvas.style.display = "block";
   window.addEventListener("keydown", (e) => {
     keyPressed = e.key;
     switch (e.key) {
