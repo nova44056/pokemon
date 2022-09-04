@@ -25,10 +25,12 @@ const foreground = new Image();
 foreground.src = "./img/foregroundObjects.png";
 
 const assetsLoader = async () => {
+  canvas.style.display = "none";
   return new Promise((resolve) => {
     map.onload = () => {
       player.onload = () => {
         foreground.onload = () => {
+          canvas.style.display = "block";
           resolve();
         };
       };
