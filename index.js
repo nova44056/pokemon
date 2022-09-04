@@ -106,6 +106,9 @@ const animate = () => {
 };
 
 async function run() {
+  const welcome = document.querySelector(".welcome");
+  welcome.classList.add("close");
+
   assetsLoader();
   // default
   player = playerDown;
