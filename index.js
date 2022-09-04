@@ -31,6 +31,7 @@ const assetsLoader = async () => {
       player.onload = () => {
         foreground.onload = () => {
           canvas.style.display = "block";
+          window.location.reload();
           resolve();
         };
       };
