@@ -103,7 +103,7 @@ const animate = () => {
   }
 };
 
-assetsLoader().then(() => {
+await assetsLoader().then(() => {
   window.addEventListener("keydown", (e) => {
     keyPressed = e.key;
     switch (e.key) {
