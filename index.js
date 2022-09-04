@@ -101,6 +101,7 @@ const animate = () => {
 };
 
 window.onload = () => {
+  console.log("meow");
   assetsLoader().then(() => {
     console.log("assets loaded");
     window.addEventListener("keydown", (e) => {
