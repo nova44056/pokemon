@@ -1,4 +1,3 @@
-const app = document.querySelector(".app");
 const canvas = document.createElement("canvas");
 
 const ctx = canvas.getContext("2d");
@@ -100,11 +99,10 @@ const animate = () => {
   }
 };
 
-var appInitialize = false;
-
-const run = async () => {
-  await assetsLoader();
-  app.append(canvas);
+async function run() {
+  assetsLoader();
+  document.body.append(canvas);
+  console.log("meow");
   window.addEventListener("keydown", (e) => {
     keyPressed = e.key;
     switch (e.key) {
@@ -135,9 +133,4 @@ const run = async () => {
   });
 
   animate();
-};
-
-(async () => {
-  await run();
-  window.location.reload();
-})();
+}
