@@ -1,5 +1,18 @@
 const canvas = document.createElement("canvas");
 
+const loadImage = (src) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      resolve(img);
+    };
+    img.onerror = (e) => {
+      reject(e);
+    };
+  });
+};
+
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = 1024;
 const CANVAS_HEIGHT = 576;
@@ -24,14 +37,17 @@ const foreground = new Image();
 foreground.src = "./img/foregroundObjects.png";
 
 const assetsLoader = async () => {
-  return new Promise((resolve) => {
-    map.onload = () => {
-      player.onload = () => {
-        foreground.onload = () => {
-          resolve();
-        };
-      };
-    };
+  const assets = [
+    "./img/Pellet Town.png",
+    "./img/playerUp.png",
+    "./img/playerDown.png",
+    "./img/playerLeft.png",
+    "./img/playerRight.png",
+    "./img/foregroundObjects.png",
+  ];
+
+  assets.forEach(async (asset) => {
+    await loadImage(asset);
   });
 };
 
