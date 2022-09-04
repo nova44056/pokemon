@@ -100,7 +100,7 @@ const animate = () => {
   }
 };
 
-window.onload = async () => {
+document.onload = async () => {
   await assetsLoader().then(() => {
     console.log("assets loaded");
     window.addEventListener("keydown", (e) => {
