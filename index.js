@@ -1,5 +1,4 @@
-const app = document.querySelector(".app");
-const canvas = app.querySelector("canvas");
+const canvas = document.createElement("canvas");
 
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = 1024;
@@ -100,56 +99,40 @@ const animate = () => {
   }
 };
 
-const run = async () => {
-  await assetsLoader();
-  console.log("assets loaded");
-  window.addEventListener("keydown", (e) => {
-    keyPressed = e.key;
-    switch (e.key) {
-      case "ArrowUp":
-        player.src = playerImageSrc["up"];
-        playerIsMoving = true;
-        break;
-      case "ArrowDown":
-        player.src = playerImageSrc["down"];
-        playerIsMoving = true;
-        break;
-      case "ArrowLeft":
-        player.src = playerImageSrc["left"];
-        playerIsMoving = true;
-        break;
-      case "ArrowRight":
-        player.src = playerImageSrc["right"];
-        playerIsMoving = true;
-        break;
-    }
-  });
+const run = () => {
+  assetsLoader().then(() => {
+    document.body.append(canvas);
+    window.addEventListener("keydown", (e) => {
+      keyPressed = e.key;
+      switch (e.key) {
+        case "ArrowUp":
+          player.src = playerImageSrc["up"];
+          playerIsMoving = true;
+          break;
+        case "ArrowDown":
+          player.src = playerImageSrc["down"];
+          playerIsMoving = true;
+          break;
+        case "ArrowLeft":
+          player.src = playerImageSrc["left"];
+          playerIsMoving = true;
+          break;
+        case "ArrowRight":
+          player.src = playerImageSrc["right"];
+          playerIsMoving = true;
+          break;
+      }
+    });
 
-  window.addEventListener("keyup", (e) => {
-    keyPressed = null;
-    playerIsMoving = false;
-    currentPlayerFrame = 0;
-    playerAnimationTime = 0;
-  });
+    window.addEventListener("keyup", (e) => {
+      keyPressed = null;
+      playerIsMoving = false;
+      currentPlayerFrame = 0;
+      playerAnimationTime = 0;
+    });
 
-  animate();
+    animate();
+  });
 };
 
-// animate();
-
-// window.addEventListener("keydown", (e) => {
-//   switch (e.key) {
-//     case "ArrowUp":
-//       console.log("up");
-//       break;
-//     case "ArrowDown":
-//       animate();
-//       break;
-//     case "ArrowLeft":
-//       console.log("left");
-//       break;
-//     case "ArrowRight":
-//       console("right");
-//       break;
-//   }
-// });
+run();
