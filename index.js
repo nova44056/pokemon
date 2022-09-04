@@ -25,7 +25,6 @@ const foreground = new Image();
 foreground.src = "./img/foregroundObjects.png";
 
 const assetsLoader = async () => {
-  canvas.style.display = "none";
   return new Promise((resolve) => {
     map.onload = () => {
       player.onload = () => {
@@ -101,40 +100,41 @@ const animate = () => {
   }
 };
 
-assetsLoader().then(() => {
-  canvas.style.display = "block";
-  console.log("assets loaded");
-  window.addEventListener("keydown", (e) => {
-    keyPressed = e.key;
-    switch (e.key) {
-      case "ArrowUp":
-        player.src = playerImageSrc["up"];
-        playerIsMoving = true;
-        break;
-      case "ArrowDown":
-        player.src = playerImageSrc["down"];
-        playerIsMoving = true;
-        break;
-      case "ArrowLeft":
-        player.src = playerImageSrc["left"];
-        playerIsMoving = true;
-        break;
-      case "ArrowRight":
-        player.src = playerImageSrc["right"];
-        playerIsMoving = true;
-        break;
-    }
-  });
+window.onload = () => {
+  assetsLoader().then(() => {
+    console.log("assets loaded");
+    window.addEventListener("keydown", (e) => {
+      keyPressed = e.key;
+      switch (e.key) {
+        case "ArrowUp":
+          player.src = playerImageSrc["up"];
+          playerIsMoving = true;
+          break;
+        case "ArrowDown":
+          player.src = playerImageSrc["down"];
+          playerIsMoving = true;
+          break;
+        case "ArrowLeft":
+          player.src = playerImageSrc["left"];
+          playerIsMoving = true;
+          break;
+        case "ArrowRight":
+          player.src = playerImageSrc["right"];
+          playerIsMoving = true;
+          break;
+      }
+    });
 
-  window.addEventListener("keyup", (e) => {
-    keyPressed = null;
-    playerIsMoving = false;
-    currentPlayerFrame = 0;
-    playerAnimationTime = 0;
-  });
+    window.addEventListener("keyup", (e) => {
+      keyPressed = null;
+      playerIsMoving = false;
+      currentPlayerFrame = 0;
+      playerAnimationTime = 0;
+    });
 
-  animate();
-});
+    animate();
+  });
+};
 
 // animate();
 
