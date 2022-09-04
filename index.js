@@ -100,9 +100,8 @@ const animate = () => {
   }
 };
 
-window.onload = () => {
-  console.log("meow");
-  assetsLoader().then(() => {
+window.onload = async () => {
+  await assetsLoader().then(() => {
     console.log("assets loaded");
     window.addEventListener("keydown", (e) => {
       keyPressed = e.key;
