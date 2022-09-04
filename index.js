@@ -103,6 +103,7 @@ const animate = () => {
 
 assetsLoader().then(() => {
   canvas.style.display = "block";
+  console.log("assets loaded");
   window.addEventListener("keydown", (e) => {
     keyPressed = e.key;
     switch (e.key) {
